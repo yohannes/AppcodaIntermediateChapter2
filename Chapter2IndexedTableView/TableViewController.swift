@@ -30,6 +30,8 @@ class TableViewController: UITableViewController {
         self.title = "Animals"
         
         self.createAnimalsDictionary()
+        
+        self.tableView.sectionIndexColor = UIColor.orangeColor()
     }
 
     // MARK: - UITableViewDataSource Methods
@@ -49,6 +51,9 @@ class TableViewController: UITableViewController {
         let animalNamePrefixAsKey = self.animalSectionTitles[indexPath.section]
         guard let validAnimalArrayForKey = self.animalsDictionary[animalNamePrefixAsKey] else { return cell }
         cell.textLabel?.text = validAnimalArrayForKey[indexPath.row]
+        cell.textLabel?.font = UIFont(name: "Avenir Next", size: 18.0)
+        cell.textLabel?.textColor = UIColor.orangeColor()
+        
         
         let filePathToAnimalImage = validAnimalArrayForKey[indexPath.row].lowercaseString.stringByReplacingOccurrencesOfString(" ", withString: "_")
         cell.imageView?.image = UIImage(named: filePathToAnimalImage)
@@ -67,6 +72,18 @@ class TableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return self.animalSectionTitles[section]
+    }
+    
+    // MARK: UITableViewDelegate Methods
+    
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50.0
+    }
+    
+    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let headerView = view as! UITableViewHeaderFooterView
+        headerView.textLabel?.textColor = UIColor.orangeColor()
+        headerView.textLabel?.font = UIFont(name: "Avenir Next", size: 25.0)
     }
 
     // MARK: - Helper Methods
