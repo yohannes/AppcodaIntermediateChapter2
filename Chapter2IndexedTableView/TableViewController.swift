@@ -15,6 +15,7 @@ class TableViewController: UITableViewController {
     let tableViewCellIdentifier = "TableViewCellIdentifier"
     
     let animals = ["Bear", "Black Swan", "Buffalo", "Camel", "Cockatoo", "Dog", "Donkey", "Emu", "Giraffe", "Greater Rhea", "Hippopotamus", "Horse", "Koala", "Lion", "Llama", "Manatus", "Meerkat", "Panda", "Peacock", "Pig", "Platypus", "Polar Bear", "Rhinoceros", "Seagull", "Tasmania Devil", "Whale", "Whale Shark", "Wombat"]
+    let animalIndexTitles = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
     
     var animalsDictionary = Dictionary<String, Array<String>>()
     var animalSectionTitles: [String] = []
@@ -56,7 +57,12 @@ class TableViewController: UITableViewController {
     }
     
     override func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
-        return self.animalSectionTitles
+        return self.animalIndexTitles
+    }
+    
+    override func tableView(tableView: UITableView, sectionForSectionIndexTitle title: String, atIndex index: Int) -> Int {
+        guard let validIndex = self.animalSectionTitles.indexOf(title) else { return -1 }
+        return validIndex
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
