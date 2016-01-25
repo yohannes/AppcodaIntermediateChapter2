@@ -55,6 +55,10 @@ class TableViewController: UITableViewController {
         return cell
     }
     
+    override func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
+        return self.animalSectionTitles
+    }
+    
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return self.animalSectionTitles[section]
     }
